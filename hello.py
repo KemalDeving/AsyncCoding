@@ -9,22 +9,18 @@ class Musteri(BaseModel):
 async def login_basarisi (x):
      print("checking your login")
      await asyncio.sleep(x)
-     print("Succesfull")
+     return ("Successful")
 
-#i = True
-#while i == True:
-    # d
-     
-     
-     
-try :
-    Musteri1 =  Musteri (
-        username= input("Whats your username?") , 
-        password = input("Whats your password?"),
-        age = input("Whats your age?") )
-    asyncio.run(login_basarisi(2))
-    print (Musteri1)  
-    i = False
-except ValidationError as e :   
-      print (f'Validation went wrong')
-      print(e)
+while True: 
+    try :
+        Musteri1 =  Musteri (
+            username= input("Whats your username?") , 
+            password = input("Whats your password?"),
+            age = input("Whats your age?")   )
+        print (Musteri1)  
+        sonuc=asyncio.run(login_basarisi(2))
+        print(sonuc)
+        break
+    except ValidationError as e :   
+          print (f'Validation went wrong please retry according the rules')
+          print (e)
