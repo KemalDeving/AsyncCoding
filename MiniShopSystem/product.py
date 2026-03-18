@@ -12,9 +12,12 @@ def product_creator ():
     stock = input("how is the stock for this product?")
     )
     return x
-    
-products= []
 
+def product_printer():
+   for product in products:
+      print(f'name of the product is {product.name} , $ of the product is {product.price} , stock amount of the product is {product.stock} ')
+
+products= []
 while True :
     try: 
         product = product_creator()
@@ -34,4 +37,4 @@ while True :
         print(e)
         print("ValidationError fix your error")
 
-print(products)
+product_printer()
