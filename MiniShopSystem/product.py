@@ -13,18 +13,25 @@ def product_creator ():
     )
     return x
     
-Products= []
-a=True
-while a == True :
+products= []
+
+while True :
     try: 
-        product1 = product_creator()
-        print(product1)
-        another_list=input("Do you want to create another product? Type y / n")
-        if another_list.lower == "y": 
-            a==True
-        elif another_list.lower == "n":
-            break
-        else: print("you typed something else please type again")
+        product = product_creator()
+        print(product)
+        while True:
+            another_list=input("Do you want to create another product? Type y / n")
+            if another_list.lower() == "y": 
+             products.append(product)
+             break
+            elif another_list.lower() == "n":
+             products.append(product)
+             break
+            else: print("you typed something else please type again")
+        if another_list.lower() == "n":break
+            
     except ValidationError as e :
         print(e)
         print("ValidationError fix your error")
+
+print(products)
