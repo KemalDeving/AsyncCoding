@@ -7,7 +7,7 @@ class Product (BaseModel):
     
 def product_creator ():
     x=Product(     
-    name = input("what is the name for this product?"),
+    name = input("what is the name for this product?").lower(),
     price = input("what is the price for this product?"),
     stock = input("how is the stock for this product?")
     )
@@ -21,7 +21,7 @@ products= []
 while True :
     try: 
         product = product_creator()
-        print(product)
+        #print(product)
         while True:
             another_list=input("Do you want to create another product? Type y / n")
             if another_list.lower() == "y": 
@@ -31,10 +31,17 @@ while True :
              products.append(product)
              break
             else: print("you typed something else please type again")
-        if another_list.lower() == "n":break
-            
+        if another_list.lower() == "n":break   
     except ValidationError as e :
         print(e)
         print("ValidationError fix your error")
-
 product_printer()
+while True:
+    selected_item = input("Select an item you want to buy")
+    selected_item_ammount =input("Select item amount you want to buy")
+    for product in products : 
+       if product.name == selected_item.lower():
+        print("we have that item")
+        product.stock  >= selected_item_ammount 
+        print("we have the required amount")
+       else :print("we dont have the amount or the product you wish for")
