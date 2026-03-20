@@ -16,7 +16,6 @@ def product_creator ():
 def product_printer():
    for product in products:
       print(f'name of the product is {product.name} , $ of the product is {product.price} , stock amount of the product is {product.stock} ')
-
 products= []
 while True :
     try: 
@@ -36,7 +35,8 @@ while True :
         print(e)
         print("ValidationError fix your error")
 product_printer()
-while True :
+shopping=True
+while shopping :
     try  :
          selected_item = input("Select an item you want to buy")
          selected_item_ammount = int(input("Select item amount you want to buy"))
@@ -48,9 +48,32 @@ while True :
                     print("we dont have that product in stock right now ")
                   elif product.stock  >= selected_item_ammount :
                     print("we have the required amount for you")
+                    product.stock = product.stock - selected_item_ammount
+                    print("thanks for the purchase")
+                    print(f'now the new stock for the product is { product.stock }')
                   else :
                     print("we dont have the amount  you wish for")
                   break  
          if item_found == False:  
                 print("we dont have that item")
-    except ValueError:print("your input should be a integer")
+    except ValueError:
+        print("your input should be a integer")
+    multiple_purchase= input ("you want to continue buying ? just y or n")
+    if multiple_purchase.lower() == "y": 
+        print("Sure!")
+    elif multiple_purchase.lower() == "n":
+        shopping=False
+        break
+    else:
+        print("you should only type y or n")
+        while True:
+         multiple_purchase = input("you want to continue buying ? just y or n ")
+         if multiple_purchase.lower() == "y":
+              print("Sure!")
+              break
+         elif multiple_purchase.lower() == "n":
+              shopping = False
+              break
+         else:
+            print("ONLY y OR n")
+
