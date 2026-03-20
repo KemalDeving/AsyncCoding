@@ -1,4 +1,4 @@
-from pydantic import BaseModel , Field, ValidationError
+from pydantic import BaseModel , Field, ValidationError 
 
 class Product (BaseModel):
     name: str = Field(min_length=1 )
@@ -36,12 +36,24 @@ while True :
         print(e)
         print("ValidationError fix your error")
 product_printer()
-while True:
-    selected_item = input("Select an item you want to buy")
-    selected_item_ammount =input("Select item amount you want to buy")
-    for product in products : 
-       if product.name == selected_item.lower():
-        print("we have that item")
-        product.stock  >= selected_item_ammount 
-        print("we have the required amount")
-       else :print("we dont have the amount or the product you wish for")
+while True :
+    try  :
+         selected_item = input("Select an item you want to buy")
+         selected_item_ammount = int(input("Select item amount you want to buy"))
+         item_found = False
+         for product in products : 
+                if product.name == selected_item.lower() :
+                  item_found = True
+                elif item_found == True and product.stock == 0 : 
+                    print("we dont have that product in stock right now ")
+                elif item_found == True and product.stock  >= selected_item_ammount :
+                    print("we have the required amount for you")
+                elif item_found == True and product.stock  <= selected_item_ammount:
+                    print("we dont have the amount  you wish for")
+         if item_found == False:  
+                print("we dont have that item")
+         else : print("we do have that item")
+         break                 
+    
+    
+    except ValueError:print("your imput should be a integer")
