@@ -44,16 +44,13 @@ while True :
          for product in products : 
                 if product.name == selected_item.lower() :
                   item_found = True
-                elif item_found == True and product.stock == 0 : 
+                  if product.stock == 0 : 
                     print("we dont have that product in stock right now ")
-                elif item_found == True and product.stock  >= selected_item_ammount :
+                  elif product.stock  >= selected_item_ammount :
                     print("we have the required amount for you")
-                elif item_found == True and product.stock  <= selected_item_ammount:
+                  else :
                     print("we dont have the amount  you wish for")
+                  break  
          if item_found == False:  
                 print("we dont have that item")
-         else : print("we do have that item")
-         break                 
-    
-    
-    except ValueError:print("your imput should be a integer")
+    except ValueError:print("your input should be a integer")
